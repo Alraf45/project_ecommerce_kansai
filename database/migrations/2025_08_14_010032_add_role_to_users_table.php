@@ -7,22 +7,27 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Tambah kolom role ke tabel users
+     * Tambahkan kolom role ke tabel users.
      */
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('admin');
+            // Tambahkan hanya jika kolom belum ada
+            if (!Schema::hasColumn('users', 'role')) {
+                $table->string('role')->default('user')->after('email');
+            }
         });
     }
 
     /**
-     * Hapus kolom role dari tabel users
+     * Hapus kolom role dari tabel users.
      */
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+            if (Schema::hasColumn('users', 'role')) {
+                $table->dropColumn('role');
+            }
         });
     }
 };

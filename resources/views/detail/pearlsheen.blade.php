@@ -70,7 +70,8 @@
         
         <!-- Description -->
         <p class="text-gray-700 mb-6">
-          KANSAI PEARLSHEEN adalah cat warna premium yang memberikan hasil akhir yang mengkilap seperti baru, cepat kering dan tahan lama. Segera 
+          KANSAI PEARLSHEEN adalah cat warna premium yang memberikan hasil akhir yang mengkilap seperti baru, cepat kering dan tahan lama. Segera beli KANSAI PEARLSHEEN sekarang juga!
+          
         </p>
 
         <!-- Color Options -->

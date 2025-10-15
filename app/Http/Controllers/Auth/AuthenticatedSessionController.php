@@ -17,6 +17,9 @@ class AuthenticatedSessionController extends Controller
         return view('auth.login');
     }
 
+    /**
+     * Proses login user.
+     */
     public function store(Request $request)
     {
         // Validasi input
@@ -35,16 +38,23 @@ class AuthenticatedSessionController extends Controller
         // Regenerasi session
         $request->session()->regenerate();
 
-        // Redirect ke dashboard
+        // ✅ Update waktu login terakhir ke database
+        $user = Auth::user();
+        $user->last_login = now();
+        $user->save();
+
+        // Redirect ke dashboard atau halaman tujuan
         return redirect()->intended('/');
     }
 
+    /**
+     * Logout user.
+     */
     public function destroy(Request $request)
     {
-        Auth::guard('/')->logout();
+        Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/');

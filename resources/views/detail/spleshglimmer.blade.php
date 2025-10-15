@@ -70,7 +70,7 @@
         
         <!-- Description -->
         <p class="text-gray-700 mb-6">
-          KANSAI SPLESH GLIMMER adalah cat warna premium yang memberikan hasil akhir yang mengkilap seperti biru, cepat kering dan tahan lama. Segera beli KANSAI SPLESH GLIMMER sekarang juga!
+          KANSAI SPLESH GLIMMER adalah cat warna premium yang memberikan hasil akhir yang mengkilap seperti baru, cepat kering dan tahan lama. Segera beli KANSAI SPLESH GLIMMER sekarang juga!
         </p>
 
         <!-- Color Options -->

@@ -2,31 +2,28 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
+     * Kolom yang bisa diisi massal (fillable)
      */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
+        'is_active',
+        'last_login',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
+     * Kolom yang disembunyikan ketika serialisasi
      */
     protected $hidden = [
         'password',
@@ -34,25 +31,20 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Konversi tipe data otomatis
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'last_login' => 'datetime',
+        'is_active' => 'boolean',
+    ];
 
-
-    }
-
-
-        // app/Models/User.php
+    /**
+     * Relasi ke model Cart (satu user punya satu cart)
+     */
     public function cart()
     {
         return $this->hasOne(Cart::class);
     }
-
 }

@@ -22,6 +22,6 @@ class SearchController extends Controller
         }
 
         // 4) Kirim data ke view product.blade.php
-        return view('product', compact('products'));
+        return view('layouts.products.index', compact('products'));
     }
 }

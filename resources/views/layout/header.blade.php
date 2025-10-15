@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Kansai Paint</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -34,7 +36,7 @@
     <ul class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium text-gray-700 mt-3 md:mt-0">
       <li><a href="/" class="font-semibold nav-link block py-2 px-2 border-b-2 border-transparent hover:border-blue-900 hover:text-blue-900 transition-all">Beranda</a></li>
       <li class="relative group">
-        <a href="/product" class="nav-link block py-2 px-2 border-b-2 border-transparent hover:border-blue-900 hover:text-blue-900 transition-all font-semibold">Produk</a>
+        <a href="/products" class="nav-link block py-2 px-2 border-b-2 border-transparent hover:border-blue-900 hover:text-blue-900 transition-all font-semibold ">Produk</a>
         <ul class="absolute hidden group-hover:block bg-white shadow-md rounded-md mt-2 w-96 z-50">
           <li><a href="/interior" class="block px-4 py-2 hover:bg-gray-100">Interior</a></li>
           <li><a href="/eksterior" class="block px-4 py-2 hover:bg-gray-100">Eksterior</a></li>
@@ -122,17 +124,14 @@
         <!-- Dropdown menu -->
         <div id="dropdownMenu"
           class="absolute right-0 w-40 mt-1 origin-top-right bg-white divide-y divide-gray-100 
-                 rounded-md shadow-lg opacity-0 invisible transition duration-300">
+                rounded-md shadow-lg opacity-0 invisible transition duration-300">
           <div class="py-1">
-            <a href="/order history" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Order</a>
+            <a href="/order history" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
             <a href="/settings" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Setting</a>
-
-        <div id="dropdownMenu" class="absolute right-0 w-40 mt-1 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible transition duration-300">
-          <div class="py-1">
-            <a href="/order-history" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Order</a>
-            <a href="/settings" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-
-            <a href="/" class="flex items-center gap-2 px-4 py-2 text-sm text-red-500 hover:bg-gray-100">Logout</a>
+            <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button type="submit" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+        </form>
           </div>
         </div>
       </div>

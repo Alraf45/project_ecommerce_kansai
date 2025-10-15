@@ -1,12 +1,12 @@
 <!-- Card Produk -->
-<div class=" product-card bg-white rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden group" data-category="interior">
-    <a href="tropic">
+<div class="product-card bg-white rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden group" data-category="interior">
+    <a href="antimosquito">
   
-
+  <!-- Gambar Produk -->
   <div class="relative w-full h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
-    <a href="spleshglimmer">
-    <img src="img/spleshglimmer.png" 
-         alt="KANSAI SPLESH GLIMMER"
+    <a href="antimosquito">
+    <img src="img/antimosquito.png" 
+         alt="KANSAI ANTIMOSQUITO"
          class="h-[200px] w-auto padding-auto mb-50px object-contain group-hover:scale-105 transition-transform duration-300">
     
     <!-- Badge Kategori -->
@@ -24,18 +24,21 @@
   <div class="p-5">
     <!-- Nama Produk -->
     <h3 class="text-lg font-bold text-gray-800 group-hover:text-gray-800 transition">
-      KANSAI SPLESH GLIMMER
+      KANSAI ANTIMOSQUITO
     </h3>
 
     <!-- Deskripsi -->
     <p class="text-gray-500 text-sm mt-1">
-      Cat multifungsi KANSAI SPLESH GLIMMER yang dapat digunakan untuk interior dan eksterior, dengan hasil yang menawan
+      Cat interior KANSAI ANTIMOSQUITO menjaga rumah Anda dari serangan nyamuk membandel dan memmberikan perlindungan maksimal.
     </p>
 
     <!-- Harga -->
+    
     <div class="mt-3">
-      <span class="text-xl font-bold text-gray-900">Rp 125.000</span>
+      <span class="text-xl font-bold text-gray-900">Rp 220.00</span>
     </div>
+  
+
 
     <!-- Tombol -->
     <div class="mt-4">

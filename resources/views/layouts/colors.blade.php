@@ -1,5 +1,4 @@
 @include("layout.header")
-@include("layout.banner")
 
 <div class="mb-44"></div>
 <div class="text-center">
@@ -15,7 +14,7 @@
 
     <!-- Neutral -->
     <div class="bg-white shadow rounded-md border hover:border-navy cursor-pointer"
-         onclick="toggleRow('neutralRow')">
+        onclick="toggleRow('neutralRow')">
       <div class="h-[50px] md:h-[95px] rounded-md"
         style="background-color: rgb(181, 172, 150);"></div>
       <div class="p-3 hidden md:block">
@@ -25,7 +24,7 @@
 
     <!-- Red -->
     <div class="bg-white shadow rounded-md border hover:border-navy cursor-pointer"
-         onclick="toggleRow('redRow')">
+        onclick="toggleRow('redRow')">
       <div class="h-[50px] md:h-[95px] rounded-md"
         style="background-color: rgb(237, 32, 36);"></div>
       <div class="p-3 hidden md:block">
@@ -35,7 +34,7 @@
 
     <!-- Orange -->
     <div class="bg-white shadow rounded-md border hover:border-navy cursor-pointer"
-         onclick="toggleRow('orangeRow')">
+        onclick="toggleRow('orangeRow')">
       <div class="h-[50px] md:h-[95px] rounded-md"
         style="background-color: rgb(250, 164, 26);"></div>
       <div class="p-3 hidden md:block">
@@ -45,7 +44,7 @@
 
     <!-- Yellow -->
     <div class="bg-white shadow rounded-md border hover:border-navy cursor-pointer"
-         onclick="toggleRow('yellowRow')">
+        onclick="toggleRow('yellowRow')">
       <div class="h-[50px] md:h-[95px] rounded-md"
         style="background-color: rgb(246, 235, 20);"></div>
       <div class="p-3 hidden md:block">
@@ -55,7 +54,7 @@
 
     <!-- Green -->
     <div class="bg-white shadow rounded-md border hover:border-navy cursor-pointer"
-         onclick="toggleRow('greenRow')">
+        onclick="toggleRow('greenRow')">
       <div class="h-[50px] md:h-[95px] rounded-md"
         style="background-color: rgb(11, 129, 64);"></div>
       <div class="p-3 hidden md:block">
@@ -65,7 +64,7 @@
 
     <!-- Blue -->
     <div class="bg-white shadow rounded-md border hover:border-navy cursor-pointer"
-         onclick="toggleRow('blueRow')">
+        onclick="toggleRow('blueRow')">
       <div class="h-[50px] md:h-[95px] rounded-md"
         style="background-color: rgb(57, 83, 164);"></div>
       <div class="p-3 hidden md:block">
@@ -75,7 +74,7 @@
 
     <!-- Purple -->
     <div class="bg-white shadow rounded-md border hover:border-navy cursor-pointer"
-         onclick="toggleRow('purpleRow')">
+        onclick="toggleRow('purpleRow')">
       <div class="h-[50px] md:h-[95px] rounded-md"
         style="background-color: rgb(124, 39, 125);"></div>
       <div class="p-3 hidden md:block">
@@ -104,7 +103,7 @@
   </div>
 
   <!-- tambahin row lain sesuai kategori -->
-   <div id="yellowRow" class="grid grid-cols-5 lg:grid-cols-7 gap-4 mt-4 hidden">
+  <div id="yellowRow" class="grid grid-cols-5 lg:grid-cols-7 gap-4 mt-4 hidden">
     <div class="bg-[#ddff01] h-[50px] md:h-[95px] rounded-md"></div>
     <div class="bg-[#efe124] h-[50px] md:h-[95px] rounded-md"></div>
     <div class="bg-[#efe256] h-[50px] md:h-[95px] rounded-md"></div>

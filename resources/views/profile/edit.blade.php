@@ -1,4 +1,4 @@
-@extends('layouts.app')
+
 
 @section('header')
     <header class="bg-white shadow">

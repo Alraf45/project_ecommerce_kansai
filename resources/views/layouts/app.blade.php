@@ -7,8 +7,7 @@
 
 <div class="mb-48"></div>
 <div class="text-center">
-    <h2 class="text-3xl md:text-4xl font-bold text-blue-900">Browse Our Categories</h2>
-    <p class="mt-2 text-2xl text-gray-500">Explore Your Paint</p>
+    <h2 class="text-3xl md:text-4xl font-bold text-blue-900">Semua Kategori Cat Warna</h2>
 </div>
 <div class="mb-2"></div>
 
@@ -34,7 +33,7 @@
         <div class="absolute bottom-6 left-6 text-white">
             <h2 class="text-2xl font-bold">Cat Eksterior</h2>
             <a href="/eksterior"
-               class="mt-3 inline-block bg-white text-black px-5 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
+              class="mt-3 inline-block bg-white text-black px-5 py-2 rounded-full font-semibold hover:bg-gray-200 transition">
                 Explore
             </a>
         </div>
@@ -49,7 +48,7 @@
         <div class="absolute bottom-6 left-6 text-white">
             <h2 class="text-2xl font-bold">Cat Interior</h2>
             <a href="/interior"
-               class="mt-3 inline-block bg-white text-black px-5 py-2 rounded-full font-semibold hover:bg-gray-200 transition">
+              class="mt-3 inline-block bg-white text-black px-5 py-2 rounded-full font-semibold hover:bg-gray-200 transition">
                 Explore
             </a>
         </div>
@@ -66,16 +65,16 @@
         <div class="absolute bottom-6 left-6 text-white">
             <h2 class="text-2xl font-bold">Cat Kayu & Besi</h2>
             <a href="/kayubesi"
-               class="mt-3 inline-block bg-white text-black px-5 py-2 rounded-full font-semibold hover:bg-gray-200 transition">
+              class="mt-3 inline-block bg-white text-black px-5 py-2 rounded-full font-semibold hover:bg-gray-200 transition">
                 Explore
             </a>
         </div>
 
- </div>
-</section>
+    </div>
+    </section>
 
 
-  <div class="mb-20"></div>
+
 
   </div> 
 
@@ -119,16 +118,13 @@
   });
 </script>
 
-
-  
-
 <div class="mb-32"></div>
         
-  <div class="border-t border-gray-400 w-11/12 mx-auto"></div>
 
-<div class="mb-96"></div>
 
-@extends('layout.footer')
+<div class="mb-79"></div>
+
+@include('layout.footer')
 
 </body>
 </html>

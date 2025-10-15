@@ -1,17 +1,17 @@
 <!-- Card Produk -->
-<div class="product-card bg-white rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden group" data-category="interior">
-    <a href="antimosquito">
+<div class=" product-card bg-white rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden group" data-category="premium">
+    <a href="tropic">
   
-  <!-- Gambar Produk -->
+
   <div class="relative w-full h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
-    <a href="antimosquito">
-    <img src="img/antimosquito.png" 
-        alt="KANSAI RAIN BLOCK"
-         class="h-[200px] w-auto padding-auto mb-50px object-contain group-hover:scale-105 transition-transform duration-300">
+    <a href="spleshglimmer">
+    <img src="img/spleshglimmer.png" 
+        alt="KANSAI SPLESH GLIMMER"
+        class="h-[200px] w-auto padding-auto mb-50px object-contain group-hover:scale-105 transition-transform duration-300">
     
     <!-- Badge Kategori -->
-    <span class="absolute top-2 left-2 bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-      Interior
+    <span class="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+      Premium
     </span>
 
     <!-- Badge Promo -->
@@ -24,23 +24,23 @@
   <div class="p-5">
     <!-- Nama Produk -->
     <h3 class="text-lg font-bold text-gray-800 group-hover:text-gray-800 transition">
-      KANSAI ANTIMOSQUITO
+      KANSAI SPLESH GLIMMER
     </h3>
 
     <!-- Deskripsi -->
     <p class="text-gray-500 text-sm mt-1">
-      Cat interior KANSAI ANTIMOSQUITO bekerja secara efektif untuk mengusir nyamuk dari rumah, Sehingga dapat menghalau serangga kecil
+      Cat multifungsi KANSAI SPLESH GLIMMER yang dapat digunakan untuk interior dan eksterior, dengan hasil yang menawan
     </p>
 
     <!-- Harga -->
     <div class="mt-3">
-      <span class="text-xl font-bold text-gray-900">Rp 220.000</span>
+      <span class="text-xl font-bold text-gray-900">Rp 350.000</span>
     </div>
 
     <!-- Tombol -->
     <div class="mt-4">
       <a href="javascript:void(0)"
-        class="add-to-cart inline-flex items-center px-4 py-2 bg-blue-800 text-white font-semibold rounded-xl hover:bg-blue-500 transition">
+         class="add-to-cart inline-flex items-center px-4 py-2 bg-blue-800 text-white font-semibold rounded-xl hover:bg-blue-500 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 007.5 18h11a1 1 0 00.9-.55L21 13H7zm5 5a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z" />
@@ -82,3 +82,4 @@
     });
   });
 </script>
+

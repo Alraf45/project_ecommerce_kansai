@@ -10,7 +10,7 @@
       <div class="w-full md:w-1/2 px-4 mb-8">
         <img 
           id="mainImage"
-          src="{{ asset($product->image_url) }}"
+          src="{{ asset($product->image) }}"
           alt="{{ $product->name }}"
           class="w-full h-auto rounded-lg shadow-md mb-4 bg-gray-100 p-10">
       </div>
@@ -42,7 +42,7 @@
         </div>
 
         <!-- Quantity -->
-        <form action="{{ route('cart.store') }}" method="POST">
+        <form action="{{ route('cart.checkout') }}" method="POST">
           @csrf
           <input type="hidden" name="product_id" value="{{ $product->id }}">
 
@@ -77,7 +77,7 @@
   @foreach($related as $r)
   <div class="group border rounded-md overflow-hidden max-w-[200px] hover:shadow-lg transition-shadow">
     <a href="{{ route('products.show', $r->id) }}">
-      <img src="{{ asset($r->image_url) }}" alt="{{ $r->name }}"
+      <img src="{{ asset($r->image_) }}" alt="{{ $r->name }}"
           class="w-full h-[200px] object-cover bg-gray-200 group-hover:opacity-60 p-4" />
       <div class="p-3 text-center">
         <h3 class="text-sm text-gray-700 font-semibold">{{ $r->name }}</h3>
