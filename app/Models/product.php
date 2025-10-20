@@ -40,4 +40,6 @@ protected $fillable = [
     {
         return number_format($this->price, 0, ',', '.');
     }
+
+    
 }

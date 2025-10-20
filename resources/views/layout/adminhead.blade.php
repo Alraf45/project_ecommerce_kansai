@@ -82,7 +82,7 @@
           </a>
         </li>
         <li>
-          <a href="{{ route('admin.orders') }}" class="flex items-center space-x-3 hover:bg-blue-800 px-3 py-2 rounded-md transition">
+          <a href="{{ route('admin.orders.index') }}" class="flex items-center space-x-3 hover:bg-blue-800 px-3 py-2 rounded-md transition">
             <span>🛒</span>
             <span x-show="sidebarOpen">Order</span>
           </a>

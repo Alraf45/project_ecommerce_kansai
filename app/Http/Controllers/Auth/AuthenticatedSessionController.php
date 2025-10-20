@@ -5,58 +5,53 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Providers\RouteServiceProvider;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Tampilkan halaman login.
-     */
     public function create()
     {
         return view('auth.login');
     }
 
-    /**
-     * Proses login user.
-     */
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        // Coba login
         if (!Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
             return back()->withErrors([
                 'email' => 'Email atau password salah.',
             ])->onlyInput('email');
         }
 
-        // Regenerasi session
         $request->session()->regenerate();
 
-        // ✅ Update waktu login terakhir ke database
         $user = Auth::user();
         $user->last_login = now();
         $user->save();
 
-        // Redirect ke dashboard atau halaman tujuan
-        return redirect()->intended('/');
+        // 🚀 Tambahkan session flash untuk notifikasi selamat datang
+        session()->flash('just_logged_in', true);
+        session()->flash('login_name', $user->name);
+
+        // 🔹 Redirect berdasarkan role
+        if ($user->admin) { // pastikan ada kolom is_admin di tabel users
+            return redirect()->route('admin.dashboard')->with('success', 'Selamat datang, Admin ' . $user->name . '!');
+        }
+
+        return redirect()->intended('/')->with('success', 'Berhasil login, ' . $user->name . '!');
     }
 
-    /**
-     * Logout user.
-     */
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        // logout juga kasih pesan
+        return redirect('/')
+            ->with('success', 'Kamu telah logout.');
     }
 }
