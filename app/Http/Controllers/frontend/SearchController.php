@@ -5,24 +5,21 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        // 1) Ambil query dari input form
-        $query = trim($request->input('query', ''));
+        $query = $request->input('query');
 
-        // 2) Jika query kosong -> tampilkan semua produk
-        if ($query === '') {
-            $products = Product::all();
-        } 
-        // 3) Jika query ada -> filter pakai LIKE
-        else {
-            $products = Product::where('name', 'LIKE', "%{$query}%")->get();
-        }
+        // 🔍 Cari produk berdasarkan nama saja
+        $products = Product::where('name', 'like', "%{$query}%")->get();
 
-        // 4) Kirim data ke view product.blade.php
-        return view('layouts.products.index', compact('products'));
+        // Ambil semua kategori (kalau mau tampilkan filter di halaman)
+        $categories = Category::all();
+
+        // Arahkan ke tampilan pencarian
+        return view('layouts.searchs.index', compact('products', 'query', 'categories'));
     }
 }

@@ -15,7 +15,7 @@
     <a href="#colorGrid"
        class="mt-8 inline-block px-10 py-4 bg-blue-900 text-white rounded-full text-lg font-semibold hover:scale-105 hover:bg-blue-800 transition-all duration-300 shadow-lg"
        onclick="showAllColors(event)">
-       🎨 Lihat Semua Warna
+        🌈 Lihat Semua Warna
     </a>
   </div>
 </section>
@@ -176,9 +176,7 @@ function showAllColors(event) {
   <div class="relative z-10 max-w-3xl mx-auto px-6">
     <h2 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg animate-fadeIn">Mau Lihat Produk Kami?</h2>
     <p class="text-gray-700 mb-10 text-lg md:text-xl leading-relaxed animate-fadeIn delay-200">Tim Kansai siap membantu Anda memilih kombinasi produk terbaik untuk rumah atau proyek Anda.</p>
-    <a href="/products" class="inline-block px-12 py-4 bg-blue-900 text-white rounded-full font-semibold shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:bg-blue-800">
-       Lihat Produk
-    </a>
+    <a href="/products" class="inline-block px-12 py-4 bg-blue-900 text-white rounded-full font-semibold shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:bg-blue-800">🎨 Lihat Produk</a>
   </div>
 </section>
 
