@@ -11,19 +11,20 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\SearchController;
+use App\Http\Controllers\Frontend\OrderController as FrontendOrderController; // ✅ Tambah ini
 
 // 🧩 Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController; // ✅ Alias supaya tidak tabrakan
 
 // 🧱 Models
 use App\Models\Product;
 
 // ========================== HOMEPAGE ==========================
 Route::get('/', function () {
-    $products = Product::with(['category','color'])->latest()->take(11)->get();
+    $products = Product::with(['category', 'color'])->latest()->take(11)->get();
     return view('layouts.app', compact('products'));
 })->name('dashboard');
 
@@ -38,6 +39,7 @@ Route::controller(AuthenticatedSessionController::class)->group(function () {
 
 // ========================== PROFILE ==========================
 Route::middleware(['auth'])->group(function () {
+    // Semua user termasuk admin
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -55,11 +57,11 @@ Route::middleware(['auth', 'admin'])
         Route::resource('products', AdminProductController::class);
         Route::resource('users', UserController::class);
 
-        // 📦 Riwayat Pesanan
-        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-        Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
-        Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
-        Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+        // 📦 Riwayat Pesanan (Admin)
+        Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{id}', [AdminOrderController::class, 'show'])->name('orders.show');
+        Route::put('/orders/{id}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+        Route::delete('/orders/{id}', [AdminOrderController::class, 'destroy'])->name('orders.destroy');
 
         Route::view('/analytics', 'admin.analytics')->name('analytics');
     });
@@ -74,17 +76,31 @@ Route::get('/products/search', [FrontendProductController::class, 'search'])->na
 
 // ========================== CART & CHECKOUT ==========================
 Route::middleware(['auth'])->group(function () {
+    // Tampilkan keranjang
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
-    // ✅ AJAX cart, ID dikirim via JSON body
+    // Tambah ke keranjang (AJAX)
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 
+    // Update quantity
     Route::patch('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update');
+
+    // Hapus item
     Route::delete('/cart/remove/{id}', [CartController::class, 'removeItem'])->name('cart.remove');
 
+    // Checkout
     Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::post('/checkout', [CartController::class, 'processCheckout'])->name('cart.processCheckout');
     Route::get('/checkout/success', [CartController::class, 'success'])->name('cart.success');
+});
+
+// ========================== ORDER HISTORY (FRONTEND CUSTOMER) ==========================
+Route::middleware(['auth'])->group(function () {
+    // Daftar pesanan
+    Route::get('/orders', [FrontendOrderController::class, 'index'])->name('orders.index');
+
+    // Detail pesanan
+    Route::get('/orders/{id}', [FrontendOrderController::class, 'show'])->name('orders.show');
 });
 
 // ========================== STATIC PAGES ==========================

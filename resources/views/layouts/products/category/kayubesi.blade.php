@@ -11,6 +11,7 @@
       Eksplor koleksi cat Kayu & Besi Kansai Paint — dirancang untuk keindahan, ketahanan, dan kenyamanan sempurna.
     </p>
     <a href="#productGrid" 
+       id="scrollToProducts"
        class="inline-block px-10 py-4 bg-white text-blue-900 font-semibold rounded-full hover:bg-blue-100 transition transform hover:scale-105 shadow-lg animate-fade-in-up delay-300">
        🎨 Jelajahi Produk
     </a>
@@ -18,13 +19,13 @@
 </section>
 
 <!-- 🧱 GRID PRODUK -->
-<section class="max-w-7xl mx-auto px-6 md:px-12 mt-13 bg-blue-50 rounded-1xl py-10">
+<section class="max-w-7xl mx-auto px-6 md:px-12 mt-13 bg-blue-50 rounded-1xl py-10" id="productGrid">
 
   <h1 class="text-center text-1xl md:text-4xl font-extrabold mb-6 leading-tight drop-shadow-lg animate-fade-in-up">KAYU & BESI</h1>
 
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-8 place-items-center" id="productGrid">
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-8 place-items-center">
     @foreach($products as $product)
-      <div class="product-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group w-full max-w-[280px] transform hover:-translate-y-2"
+      <div class="product-card opacity-0 translate-y-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group w-full max-w-[280px]"
         data-category="{{ strtolower($product->category->slug ?? $product->category->name ?? 'all') }}"
         id="product-{{ $product->id }}">
 
@@ -60,16 +61,44 @@
 
 @include('layout.footer')
 
-<!-- JS Add to Cart Global -->
+<!-- JS Global -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Smooth scroll tombol Jelajahi Produk
+    const button = document.getElementById('scrollToProducts');
+    const target = document.getElementById('productGrid');
+
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const offset = 80; // header height
+        const topPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+        window.scrollTo({ top: topPosition, behavior: 'smooth' });
+    });
+
+    // Fade-in produk saat scroll (otomatis, tidak perlu klik tombol)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
+
+    // Add to Cart
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
     addToCartButtons.forEach(btn => {
         btn.addEventListener('click', async (e) => {
-            e.stopPropagation(); // jangan ikut klik card
+            e.stopPropagation();
             const id = btn.dataset.id;
             btn.disabled = true;
             const originalText = btn.innerHTML;
@@ -89,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await res.json();
 
                 if (data.success) {
-                    // Notifikasi
                     Swal.fire({
                         toast: true,
                         position: 'top-end',
@@ -102,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         customClass: { popup: 'rounded-xl shadow-lg' }
                     });
 
-                    // Update jumlah cart di navbar
                     if (typeof window.updateCartCount === 'function') {
                         window.updateCartCount(data.count);
                     }
@@ -133,6 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
 });
 </script>
-

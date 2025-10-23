@@ -1,6 +1,5 @@
 @include('layout.header')
 
-
 <section class="relative h-[90vh] bg-gradient-to-br from-yellow-300 via-yellow-600 to-yellow-800 flex flex-col items-center justify-center text-center text-white overflow-hidden">
   <div class="absolute inset-0 bg-[url('/images/color-splash.png')] bg-cover bg-center opacity-10"></div>
   
@@ -12,20 +11,18 @@
       Eksplor koleksi cat Premium Kansai Paint — dirancang untuk keindahan, ketahanan, dan kenyamanan sempurna.
     </p>
     <a href="#productGrid" 
+       id="scrollToProducts"
        class="inline-block px-10 py-4 bg-white text-blue-900 font-semibold rounded-full hover:bg-blue-100 transition transform hover:scale-105 shadow-lg animate-fade-in-up delay-300">
        🎨 Jelajahi Produk
     </a>
   </div>
 </section>
 
-
 <!-- 🧱 GRID PRODUK -->
-<section class="max-w-7xl mx-auto px-6 md:px-12 mt-16 mb-20">
- 
-
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 place-items-center" id="productGrid">
+<section class="max-w-7xl mx-auto px-6 md:px-12 mt-16 mb-20" id="productGrid">
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 place-items-center">
     @foreach($products as $product)
-      <div class="product-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group w-full max-w-[280px] transform hover:-translate-y-2"
+      <div class="product-card opacity-0 translate-y-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group w-full max-w-[280px]"
         data-category="{{ strtolower($product->category->slug ?? $product->category->name ?? 'all') }}"
         id="product-{{ $product->id }}">
 
@@ -59,69 +56,119 @@
   </div>
 </section>
 
-<!-- HIGHLIGHT PRODUCT -->
-<section class="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24 my-20 overflow-hidden">
-  <div class="absolute inset-0 bg-[url('/images/color-splash.png')] bg-cover opacity-10"></div>
-  <div class="max-w-6xl mx-auto text-center relative z-10">
-    <h2 class="text-4xl font-bold mb-6">🌟 Produk Pilihan Minggu Ini</h2>
-    <p class="text-blue-100 mb-12 max-w-2xl mx-auto">Dipilih oleh para profesional — warna yang paling populer di kalangan arsitek dan desainer interior.</p>
-    
-    @if($products->count() > 0)
-      @php $highlight = $products->first(); @endphp
-      <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-10 max-w-2xl mx-auto hover:scale-105 transition-transform duration-500">
-        <img src="{{ asset($highlight->image) }}" alt="{{ $highlight->name }}" class="h-56 w-auto mx-auto object-contain mb-6 drop-shadow-lg">
-        <h3 class="text-2xl font-bold mb-2">{{ $highlight->name }}</h3>
-        <p class="text-blue-100 mb-4">{{ Str::limit($highlight->description, 120) }}</p>
-        <span class="text-3xl font-bold text-white">Rp {{ number_format($highlight->price, 0, ',', '.') }}</span>
-      </div>
-    @endif
-  </div>
-</section>
+<!-- Keunggulan Cat Premium -->
+<div class="max-w-6xl mx-auto mt-12 p-6 bg-blue-50 rounded-2xl text-center">
+  <h2 class="text-2xl font-bold text-blue-900">Keunggulan Cat Eksterior Kansai</h2>
+  <p class="mt-4 text-gray-700 leading-relaxed">
+    Cat premium Kansai dirancang untuk hasil maksimal: tahan lama, warna lebih hidup, mudah dibersihkan, dan aman digunakan. Cocok untuk interior maupun eksterior rumah atau proyek profesional. Pilih cat premium untuk hasil akhir yang memukau!
+  </p>
+</div>
 
-<!-- CTA AKHIR -->
-<section class="relative bg-gradient-to-t from-blue-50 to-white py-24 text-center">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-4xl font-extrabold text-blue-900 mb-4">Mulai Petualangan Warnamu</h2>
-    <p class="text-gray-600 mb-8 text-lg">Warna bukan hanya dekorasi — tapi cerminan gaya hidup. Yuk, pilih warna impianmu!</p>
-    <a href="/colors" class="px-10 py-4 bg-blue-900 text-white font-semibold rounded-full hover:bg-blue-800 hover:scale-105 transition-all duration-300 shadow-xl">
-      🌈 Lihat Palet Warna
-    </a>
-  </div>
-</section>
+<div class="mb-32"></div>
 
 @include('layout.footer')
 
+<!-- JS Add to Cart & Fade-in Produk -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const token = document.querySelector('meta[name="csrf-token"]').content;
-  document.querySelectorAll('.add-to-cart').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      btn.disabled = true;
-      const id = btn.dataset.id;
-      const original = btn.innerHTML;
-      btn.innerHTML = "⏳ Menambahkan...";
-      try {
-        const res = await fetch(`/cart/add/${id}`, {
-          method: "POST",
-          headers: {"Content-Type": "application/json", "X-CSRF-TOKEN": token},
-          body: JSON.stringify({ quantity: 1 })
-        });
-        const data = await res.json();
-        Swal.fire({
-          toast: true, position: 'top-end',
-          icon: data.success ? 'success' : 'error',
-          title: data.message || 'Terjadi kesalahan',
-          showConfirmButton: false,
-          timer: 2000,
-          background: data.success ? '#1e3a8a' : '#b91c1c',
-          color: '#fff'
-        });
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = original;
-      }
+
+    // Smooth scroll "Jelajahi Produk"
+    const button = document.getElementById('scrollToProducts');
+    const target = document.getElementById('productGrid');
+
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const offset = 80; // header height
+        const topPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: topPosition, behavior: 'smooth' });
     });
-  });
+
+    // Fade-in per product card saat scroll otomatis
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                const card = entry.target;
+                setTimeout(() => {
+                    card.style.opacity = 1;
+                    card.style.transform = 'translateY(0)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                }, [...document.querySelectorAll('.product-card')].indexOf(card) * 100);
+                observer.unobserve(card);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
+
+    // Add to Cart
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    addToCartButtons.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            const id = btn.dataset.id;
+            btn.disabled = true;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "⏳ Menambahkan...";
+
+            try {
+                const res = await fetch(`/cart/add/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': token
+                    },
+                    body: JSON.stringify({ quantity: 1 })
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: data.message,
+                        showConfirmButton: false,
+                        timer: 2000,
+                        background: '#1e3a8a',
+                        color: '#fff',
+                        customClass: { popup: 'rounded-xl shadow-lg' }
+                    });
+
+                    if (typeof window.updateCartCount === 'function') {
+                        window.updateCartCount(data.count);
+                    }
+                } else {
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: data.message || 'Gagal menambahkan ke keranjang!',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+
+            } catch (error) {
+                console.error(error);
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Silakan login terlebih dahulu!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        });
+    });
+
 });
 </script>

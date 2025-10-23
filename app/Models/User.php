@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Cart::class);
     }
+
+
+
+    public function getProfilePictureUrlAttribute()
+{
+    return $this->profile_picture 
+        ? asset('storage/' . $this->profile_picture)
+        : asset('img/default-avatar.png'); // fallback default
+}
+
 }

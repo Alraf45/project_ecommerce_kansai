@@ -42,16 +42,43 @@
       </button>
 
       <div x-show="open" 
-           @click.away="open = false"
-           x-transition
-           class="absolute right-0 mt-3 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
-        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">👤 Profil</a>
-        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">⚙️ Pengaturan</a>
-        <form method="POST" action="{{ route('logout') }}">
-          @csrf
-          <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">🚪 Logout</button>
-        </form>
-      </div>
+     @click.away="open = false"
+     x-transition.scale.origin.top.right
+     class="absolute right-0 mt-3 w-56 bg-white/80 backdrop-blur-lg border border-gray-200 
+            shadow-[0_8px_30px_rgba(0,0,0,0.1)] rounded-2xl py-3 z-50 transition-all duration-300 ease-out">
+            
+<!-- 👤 Profil -->
+<a href="{{ route('profile.edit') }}"
+   class="flex items-center gap-3 px-5 py-2.5 text-[15px] text-gray-700 
+          hover:bg-gradient-to-r hover:from-blue-900 hover:to-blue-700 
+          hover:text-white rounded-xl transition-all duration-300">
+  <i class="fa-solid fa-user text-blue-900"></i>
+  <span>Profil</span>
+</a>
+
+
+  <!-- 🏠 Home -->
+  <a href="/"
+     class="flex items-center gap-3 px-5 py-2.5 text-[15px] text-gray-700 
+            hover:bg-gradient-to-r hover:from-blue-700 hover:to-blue-700 
+            hover:text-white rounded-xl transition-all duration-300">
+    <i class="fa-solid fa-house text-blue-900"></i>
+    <span>Beranda</span>
+  </a>
+
+  <!-- 🚪 Logout -->
+  <form method="POST" action="{{ route('logout') }}" class="mt-1">
+    @csrf
+    <button type="submit"
+            class="flex items-center gap-3 w-full text-left px-5 py-2.5 text-[15px] text-gray-700 
+                   hover:bg-gradient-to-r hover:from-red-600 hover:to-red-700 
+                   hover:text-white rounded-xl transition-all duration-300">
+      <i class="fa-solid fa-right-from-bracket text-red-700"></i>
+      <span>Logout</span>
+    </button>
+  </form>
+</div>
+
     </div>
   </header>
 

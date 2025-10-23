@@ -27,7 +27,7 @@
 
       <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition">
         <h3 class="text-gray-500 text-sm font-medium">Pesanan Hari Ini</h3>
-        <p class="text-3xl font-bold text-blue-900 mt-2">-</p>
+        <p class="text-3xl font-bold text-blue-900 mt-2"></p>
       </div>
 
       <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition">

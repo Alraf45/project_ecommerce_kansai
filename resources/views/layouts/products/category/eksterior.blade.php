@@ -11,20 +11,18 @@
       Eksplor koleksi cat Eksterior Kansai Paint — dirancang untuk keindahan, ketahanan, dan kenyamanan sempurna.
     </p>
     <a href="#productGrid" 
+       id="scrollToProducts"
        class="inline-block px-10 py-4 bg-white text-blue-900 font-semibold rounded-full hover:bg-blue-100 transition transform hover:scale-105 shadow-lg animate-fade-in-up delay-300">
        🎨 Jelajahi Produk
     </a>
   </div>
 </section>
 
-
 <!-- 🧱 GRID PRODUK -->
-<section class="max-w-7xl mx-auto px-6 md:px-12 mt-16 mb-20">
- 
-
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 place-items-center" id="productGrid">
+<section class="max-w-7xl mx-auto px-6 md:px-12 mt-16 mb-20" id="productGrid">
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 place-items-center">
     @foreach($products as $product)
-      <div class="product-card bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group w-full max-w-[280px] transform hover:-translate-y-2"
+      <div class="product-card opacity-0 translate-y-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group w-full max-w-[280px]"
         data-category="{{ strtolower($product->category->slug ?? $product->category->name ?? 'all') }}"
         id="product-{{ $product->id }}">
 
@@ -58,7 +56,7 @@
   </div>
 </section>
 
-<!-- Keunggulan Cat Premium -->
+<!-- Keunggulan Cat Eksterior -->
 <div class="max-w-6xl mx-auto mt-12 p-6 bg-blue-50 rounded-2xl text-center">
   <h2 class="text-2xl font-bold text-blue-900">Keunggulan Cat Eksterior Kansai</h2>
   <p class="mt-4 text-gray-700 leading-relaxed">
@@ -70,16 +68,46 @@
 
 @include('layout.footer')
 
-<!-- JS Add to Cart -->
+<!-- JS Add to Cart & Fade-in Produk -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Smooth scroll "Jelajahi Produk"
+    const button = document.getElementById('scrollToProducts');
+    const target = document.getElementById('productGrid');
+
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const offset = 80; // header height
+        const topPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: topPosition, behavior: 'smooth' });
+    });
+
+    // Fade-in setiap produk otomatis saat halaman terbuka
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                const card = entry.target;
+                setTimeout(() => {
+                    card.style.opacity = 1;
+                    card.style.transform = 'translateY(0)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                }, [...document.querySelectorAll('.product-card')].indexOf(card) * 100);
+                observer.unobserve(card);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.product-card').forEach(card => observer.observe(card));
+
+    // Add to Cart
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
     addToCartButtons.forEach(btn => {
         btn.addEventListener('click', async (e) => {
-            e.stopPropagation(); // jangan ikut klik card
+            e.stopPropagation();
             const id = btn.dataset.id;
             btn.disabled = true;
             const originalText = btn.innerHTML;
@@ -141,5 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
 });
 </script>

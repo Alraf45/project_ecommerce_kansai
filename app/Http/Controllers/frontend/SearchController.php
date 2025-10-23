@@ -11,15 +11,21 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        $query = $request->input('query');
+        // Ambil kata kunci dari input form
+        $keyword = $request->input('query');
 
         // 🔍 Cari produk berdasarkan nama saja
-        $products = Product::where('name', 'like', "%{$query}%")->get();
+        $products = Product::query()
+            ->when($keyword, function ($queryBuilder) use ($keyword) {
+                $queryBuilder->where('name', 'like', "%{$keyword}%");
+            })
+            ->paginate(12) // pagination biar gak berat
+            ->appends(['query' => $keyword]); // biar keyword tetap muncul di URL
 
         // Ambil semua kategori (kalau mau tampilkan filter di halaman)
         $categories = Category::all();
 
-        // Arahkan ke tampilan pencarian
-        return view('layouts.searchs.index', compact('products', 'query', 'categories'));
+        // Kirim data ke view
+        return view('layouts.searchs.index', compact('products', 'keyword', 'categories'));
     }
 }
