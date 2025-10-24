@@ -28,7 +28,7 @@
 
     <!-- Card 2 -->
     <div class="relative group overflow-hidden rounded-2xl shadow-lg">
-        <img src="/img/kansai_5.jpg" alt="Apparel" class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110">
+        <img src="/img/base/cat2.png" alt="Apparel" class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110">
         <div class="absolute inset-0 bg-gray-500 bg-opacity-30"></div>
         <div class="absolute bottom-6 left-6 text-white">
             <h2 class="text-2xl font-bold">Cat Eksterior</h2>

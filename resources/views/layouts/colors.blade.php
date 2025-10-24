@@ -1,24 +1,39 @@
 @include('layout.header')
 
 <!-- 🌟 HERO SECTION -->
-<section class="relative h-[90vh] bg-gradient-to-br from-blue-100 via-white to-blue-50 flex flex-col items-center justify-center text-center overflow-hidden">
-  <div class="absolute inset-0 opacity-40 bg-[url('/images/bg-pattern.svg')] bg-cover bg-center animate-[pulse_10s_infinite]"></div>
-  <div class="relative z-10">
-    <h1 class="text-6xl md:text-7xl font-extrabold text-blue-900 mb-4 drop-shadow-sm">
-      Temukan Warna Terbaik untuk Setiap Kebutuhan Project Anda
-    </h1>
-    <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-      Koleksi warna dari Kansai — warna yang hidup, kualitas yang tahan lama, dan sentuhan kemewahan di setiap sapuan kuas.
-    </p>
+<section 
+  class="relative h-[90vh] flex flex-col items-center justify-center text-center overflow-hidden bg-cover bg-center"
+  style="background-image: url('{{ asset('img/base/bg11.png') }}');"
+>
+  <!-- ✨ Pattern animasi halus -->
+  <div class="absolute inset-0 opacity-30 bg-[url('/images/bg-pattern.svg')] bg-cover bg-center animate-[pulse_12s_infinite]"></div>
 
-    <!-- 🔘 Tombol scroll ke grid warna -->
-    <a href="#colorGrid"
-       class="mt-8 inline-block px-10 py-4 bg-blue-900 text-white rounded-full text-lg font-semibold hover:scale-105 hover:bg-blue-800 transition-all duration-300 shadow-lg"
-       onclick="showAllColors(event)">
-        🌈 Lihat Semua Warna
-    </a>
+  <!-- 💬 Konten utama -->
+  <div class="relative z-10 px-6 md:px-0">
+    <!-- 🌈 Judul putih -->
+    <h1 
+      class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.7)]"
+    >
+     Temukan Warna Terbaikmu
+    </h1>
+
+   
+
+    <!-- 🔘 Tombol utama -->
+<a 
+  href="#colorGrid"
+  class="mt-10 inline-block px-10 py-4 bg-blue-900 text-white rounded-full 
+         text-base md:text-lg font-semibold shadow-lg transform transition duration-300 
+         hover:scale-105 hover:shadow-2xl hover:bg-blue-800 hover:text-gray-100"
+  onclick="showAllColors(event)"
+>
+   Lihat Semua Warna
+</a>
+
   </div>
 </section>
+
+
 
 <script>
 function showAllColors(event) {
@@ -171,14 +186,38 @@ function showAllColors(event) {
 </section>
 
 <!-- 💬 CTA PENUTUP -->
-<section class="relative bg-gradient-to-br from-blue-100 via-white to-blue-50 py-24 text-center text-blue-900 overflow-hidden">
-  <div class="absolute inset-0 bg-[url('/images/paint-flow.png')] bg-cover opacity-10"></div>
+<section 
+  class="relative py-24 text-center text-white overflow-hidden bg-center bg-no-repeat"
+  style="background-image: url('{{ asset('img/kansai_19.jpg') }}'); background-size: contain;"
+>
+  <!-- 🔹 Lapisan gelap tipis -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- ✨ Konten utama -->
   <div class="relative z-10 max-w-3xl mx-auto px-6">
-    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg animate-fadeIn">Mau Lihat Produk Kami?</h2>
-    <p class="text-gray-700 mb-10 text-lg md:text-xl leading-relaxed animate-fadeIn delay-200">Tim Kansai siap membantu Anda memilih kombinasi produk terbaik untuk rumah atau proyek Anda.</p>
-    <a href="/products" class="inline-block px-12 py-4 bg-blue-900 text-white rounded-full font-semibold shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:bg-blue-800">🎨 Lihat Produk</a>
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-[0_3px_8px_rgba(0,0,0,0.6)] animate-fadeIn text-white">
+      Mau Lihat Produk Kami?
+    </h2>
+
+    <p class="mb-10 text-lg md:text-xl leading-relaxed font-[Playfair_Display] font-bold drop-shadow-[0_2px_5px_rgba(0,0,0,0.5)] animate-fadeIn delay-200 text-white">
+      Tim <span class="text-white font-extrabold">Kansai</span> siap membantu Anda memilih 
+      <span class="text-white italic font-bold">kombinasi produk terbaik</span> 
+      untuk rumah atau proyek Anda.
+    </p>
+
+   <a 
+  href="/products" 
+  class="inline-block px-12 py-4 bg-blue-900 text-white rounded-full font-semibold shadow-lg transform transition duration-300 
+         hover:scale-105 hover:shadow-2xl hover:bg-blue-800 hover:text-gray-100"
+>
+   Lihat Produk
+</a>
+
   </div>
 </section>
+
+
+
 
 @include('layout.footer')
 

@@ -1,79 +1,94 @@
 @include('layout.header')
 
-<section class="relative h-[90vh] bg-gradient-to-br from-yellow-300 via-yellow-600 to-yellow-800 flex flex-col items-center justify-center text-center text-white overflow-hidden">
-  <div class="absolute inset-0 bg-[url('/images/color-splash.png')] bg-cover bg-center opacity-10"></div>
+<section 
+  class="relative h-[90vh] flex flex-col items-center justify-center text-center text-white overflow-hidden bg-cover bg-center"
+  style="background-image: url('{{ asset('img/premium/bg3.png') }}');">
+
+  <!-- Overlay supaya teks tetap terbaca -->
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
   
   <div class="relative z-10 max-w-3xl mx-auto px-6">
     <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg animate-fade-in-up">
-      Temukan Cat Premium Kami untuk Setiap Kebutuhan Anda
-    </h1>
+  Temukan Cat 
+  <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 font-extrabold">
+    Premium
+  </span> 
+  Kami untuk Setiap Kebutuhan Anda
+</h1>
+
     <p class="text-blue-100 text-lg md:text-xl leading-relaxed mb-8 animate-fade-in-up delay-200">
       Eksplor koleksi cat Premium Kansai Paint — dirancang untuk keindahan, ketahanan, dan kenyamanan sempurna.
     </p>
     <a href="#productGrid" 
        id="scrollToProducts"
-       class="inline-block px-10 py-4 bg-white text-blue-900 font-semibold rounded-full hover:bg-blue-100 transition transform hover:scale-105 shadow-lg animate-fade-in-up delay-300">
-       🎨 Jelajahi Produk
+       class="inline-block px-10 py-4 bg-white text-blue-900 font-semibold rounded-full transform transition-all duration-500 ease-in-out hover:bg-blue-100 hover:scale-105 hover:shadow-2xl animate-fade-in-up delay-300">
+       Jelajahi Produk
     </a>
   </div>
 </section>
 
+
 <!-- 🧱 GRID PRODUK -->
-<section class="max-w-7xl mx-auto px-6 md:px-12 mt-16 mb-20" id="productGrid">
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 place-items-center">
-    @foreach($products as $product)
-      <div class="product-card opacity-0 translate-y-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group w-full max-w-[280px]"
-        data-category="{{ strtolower($product->category->slug ?? $product->category->name ?? 'all') }}"
-        id="product-{{ $product->id }}">
+<section
+  id="productGrid"
+  class="relative max-w-7xl mx-auto px-6 md:px-12 mt-13 rounded-1xl py-10 h-[700px] bg-cover bg-center"
+  style="background-image: url('{{ asset('img/premium/bg2.png') }}');">
 
-        <!-- GAMBAR PRODUK -->
-        <a href="{{ route('products.show', $product->id) }}" class="block relative w-full aspect-square bg-gray-50 flex items-center justify-center overflow-hidden">
-          <img src="{{ asset($product->image) }}" 
-               alt="{{ $product->name }}" 
-               class="h-[200px] w-auto object-contain group-hover:scale-110 transition-transform duration-500 ease-out">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-        </a>
+  <!-- Optional overlay supaya teks tetap terbaca -->
+  <div class="absolute inset-0 bg-black bg-opacity-30 rounded-1xl"></div>
 
-        <!-- DETAIL PRODUK -->
-        <div class="p-5 text-center">
-          <h3 class="text-base font-semibold text-gray-800 mb-1 hover:text-blue-800 transition">
-            <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
-          </h3>
-          <p class="text-gray-500 text-sm mb-3">{{ Str::limit($product->description, 60) }}</p>
-          <span class="block text-xl font-bold text-blue-900 mb-3">
-            Rp {{ number_format($product->price, 0, ',', '.') }}
-          </span>
+  <div class="relative z-10">
+    <h1 class="text-center text-1xl md:text-4xl font-extrabold mb-6 leading-tight drop-shadow-lg animate-fade-in-up text-white">
+      
+    </h1>
 
-          <button 
-            type="button"
-            class="add-to-cart inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-900 text-white font-semibold rounded-full hover:bg-blue-800 hover:scale-105 transition-all duration-300 shadow-md"
-            data-id="{{ $product->id }}">
-            🛒 Tambah
-          </button>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 place-items-center">
+      @foreach($products as $product)
+        <div class="product-card opacity-0 translate-y-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group w-full max-w-[280px]"
+          data-category="{{ strtolower($product->category->slug ?? $product->category->name ?? 'all') }}"
+          id="product-{{ $product->id }}">
+
+          <!-- GAMBAR PRODUK -->
+          <a href="{{ route('products.show', $product->id) }}" class="block relative w-full aspect-square bg-gray-50 flex items-center justify-center overflow-hidden">
+            <img src="{{ asset($product->image) }}" 
+                 alt="{{ $product->name }}" 
+                 class="h-[200px] w-auto object-contain group-hover:scale-110 transition-transform duration-500 ease-out">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+          </a>
+
+          <!-- DETAIL PRODUK -->
+          <div class="p-5 text-center">
+            <h3 class="text-base font-semibold text-gray-800 mb-1 hover:text-blue-800 transition">
+              <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
+            </h3>
+            <p class="text-gray-500 text-sm mb-3">{{ Str::limit($product->description, 60) }}</p>
+            <span class="block text-xl font-bold text-blue-900 mb-3">
+              Rp {{ number_format($product->price, 0, ',', '.') }}
+            </span>
+
+            <button 
+              type="button"
+              class="add-to-cart inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-900 text-white font-semibold rounded-full hover:bg-blue-800 hover:scale-105 transition-all duration-300 shadow-md"
+              data-id="{{ $product->id }}">
+              🛒 Tambah
+            </button>
+          </div>
         </div>
-      </div>
-    @endforeach
+      @endforeach
+    </div>
   </div>
+  
 </section>
 
-<!-- Keunggulan Cat Premium -->
-<div class="max-w-6xl mx-auto mt-12 p-6 bg-blue-50 rounded-2xl text-center">
-  <h2 class="text-2xl font-bold text-blue-900">Keunggulan Cat Eksterior Kansai</h2>
-  <p class="mt-4 text-gray-700 leading-relaxed">
-    Cat premium Kansai dirancang untuk hasil maksimal: tahan lama, warna lebih hidup, mudah dibersihkan, dan aman digunakan. Cocok untuk interior maupun eksterior rumah atau proyek profesional. Pilih cat premium untuk hasil akhir yang memukau!
-  </p>
-</div>
-
-<div class="mb-32"></div>
 
 @include('layout.footer')
 
-<!-- JS Add to Cart & Fade-in Produk -->
+<!-- JS Global -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Smooth scroll "Jelajahi Produk"
+    // Smooth scroll tombol Jelajahi Produk
     const button = document.getElementById('scrollToProducts');
     const target = document.getElementById('productGrid');
 
@@ -81,20 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const offset = 80; // header height
         const topPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
         window.scrollTo({ top: topPosition, behavior: 'smooth' });
     });
 
-    // Fade-in per product card saat scroll otomatis
+    // Fade-in produk saat scroll (otomatis, tidak perlu klik tombol)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if(entry.isIntersecting){
-                const card = entry.target;
-                setTimeout(() => {
-                    card.style.opacity = 1;
-                    card.style.transform = 'translateY(0)';
-                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                }, [...document.querySelectorAll('.product-card')].indexOf(card) * 100);
-                observer.unobserve(card);
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.2 });
@@ -131,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         toast: true,
                         position: 'top-end',
                         icon: 'success',
-                        title: data.message,
+                        title: data.message || 'Produk berhasil ditambahkan!',
                         showConfirmButton: false,
                         timer: 2000,
                         background: '#1e3a8a',
