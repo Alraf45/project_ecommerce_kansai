@@ -40,7 +40,6 @@
                             <th class="px-5 py-3 text-left">No</th>
                             <th class="px-5 py-3 text-left">Nama</th>
                             <th class="px-5 py-3 text-left">Kategori</th>
-                            <th class="px-5 py-3 text-left">Warna</th>
                             <th class="px-5 py-3 text-left">Harga</th>
                             <th class="px-5 py-3 text-left">Stok</th>
                             <th class="px-5 py-3 text-center">Gambar</th>
