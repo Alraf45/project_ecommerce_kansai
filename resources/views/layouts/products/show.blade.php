@@ -48,6 +48,26 @@
                 <div class="mt-2 text-gray-600">
                     <p>Kategori: <span class="font-medium">{{ $product->category->name ?? '-' }}</span></p>
                     @if(isset($product->stock))
+                    @if($product->colors && $product->colors->count())
+    <div class="mt-1">
+        <p class="text-gray-700 font-medium mb-2">Pilihan Warna:</p>
+
+        <div class="flex flex-wrap gap-2" id="color-options">
+            @foreach ($product->colors as $color)
+                <button
+                    type="button"
+                    class="color-option w-7 h-7 rounded-full border border-gray-300 shadow-sm transition"
+                    style="background-color: {{ $color->warna }}"
+                    data-color="{{ $color->warna }}"
+                    title="{{ $color->warna }}"
+                ></button>
+            @endforeach
+        </div>
+
+        <input type="hidden" id="selected-color">
+    </div>
+@endif
+<div class="mt-4"></div>
                     <p>Stok: <span class="font-medium">{{ $product->stock }}</span></p>
                     @endif
                 </div>
@@ -214,6 +234,27 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.disabled = false;
             btn.innerHTML = originalText;
         }
+    });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const colorButtons = document.querySelectorAll('.color-option');
+    const selectedColorInput = document.getElementById('selected-color');
+
+    colorButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // reset semua
+            colorButtons.forEach(b => {
+                b.classList.remove('ring-2', 'ring-blue-600');
+            });
+
+            // set aktif
+            btn.classList.add('ring-2', 'ring-blue-600');
+
+            // simpan warna
+            selectedColorInput.value = btn.dataset.color;
+        });
     });
 });
 </script>

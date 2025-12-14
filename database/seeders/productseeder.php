@@ -9,9 +9,6 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        // Ambil semua id warna dari tabel colors
-       
-
         $products = [
             [
                 'name' => 'KANSAI PEARLSHEEN',
@@ -92,6 +89,8 @@ class ProductSeeder extends Seeder
             ],
         ];
 
-        
+        foreach ($products as $product) {
+            Product::create($product);
+        }
     }
 }
