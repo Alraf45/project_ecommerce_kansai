@@ -1,4 +1,4 @@
-@include('layout.header')
+@include('layout.header')  
 
 <!-- 🌟 HERO SECTION -->
 <section 
@@ -162,7 +162,10 @@ function showAllColors(event) {
     <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full p-6 relative animate-fadeIn">
       <button @click="selectedColor = null" class="absolute top-3 right-3 text-gray-600 hover:text-red-500 transition text-2xl font-bold">&times;</button>
 
-      <h3 class="text-2xl font-bold text-center text-blue-900 mb-6" x-text="colorName + ' Shades'"></h3>
+      <h3 class="text-2xl font-bold text-center text-blue-900 mb-6"
+    x-text="'Nuansa ' + colorName">
+</h3>
+
 
       <div class="w-24 h-24 mx-auto rounded-full shadow-lg border mb-8" :style="'background-color:' + selectedColor"></div>
 

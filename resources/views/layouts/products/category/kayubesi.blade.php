@@ -64,23 +64,40 @@
             <h3 class="text-base font-semibold text-gray-800 mb-1 hover:text-blue-800 transition">
               <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
             </h3>
-            <p class="text-gray-500 text-sm mb-3">{{ Str::limit($product->description, 60) }}</p>
             <span class="block text-xl font-bold text-blue-900 mb-3">
               Rp {{ number_format($product->price, 0, ',', '.') }}
             </span>
+ <div class="flex gap-3 justify-center">
 
-            <button 
-              type="button"
-              class="add-to-cart inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-900 text-white font-semibold rounded-full hover:bg-blue-800 hover:scale-105 transition-all duration-300 shadow-md"
-              data-id="{{ $product->id }}">
-              🛒 Tambah
-            </button>
-          </div>
+    <!-- Lihat Detail -->
+    <a 
+        href="{{ route('products.show', $product->id) }}"
+        class="inline-flex items-center justify-center px-4 py-2.5 rounded-full
+               border border-blue-900 text-blue-900 font-semibold text-sm
+               hover:bg-blue-900 hover:text-white
+               transition-all duration-300 shadow-sm"
+    >
+        Lihat Detail
+    </a>
+
+    <!-- Tambah ke Keranjang -->
+    <button 
+        type="button" 
+        class="add-to-cart inline-flex items-center justify-center gap-2
+               px-4 py-2.5 rounded-full bg-blue-900 text-white font-semibold text-sm
+               hover:bg-blue-800 hover:scale-105
+               transition-all duration-300 shadow-md"
+        data-id="{{ $product->id }}"
+    >
+        🛒 Tambah
+    </button>
+
+</div>
+
         </div>
-      @endforeach
-    </div>
+      </div>
+    @endforeach
   </div>
-  
 </section>
 
 

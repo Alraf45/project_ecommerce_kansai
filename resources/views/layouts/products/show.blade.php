@@ -20,7 +20,7 @@
     <div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-lg overflow-hidden md:flex md:gap-8 p-6 md:p-12">
         <!-- Gambar produk -->
         <div class="md:w-1/2 flex flex-col gap-4">
-            <div class="w-full h-80 bg-gray-100 flex items-center justify-center rounded-2xl shadow-md overflow-hidden">
+            <div class="w-full h-80 bg-white-900 flex items-center justify-center rounded-2xl overflow-hidden">
                 <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain">
             </div>
             @if($product->images && count($product->images) > 0)
@@ -38,7 +38,6 @@
         <div class="md:w-1/2 mt-6 md:mt-0 flex flex-col justify-between">
             <div>
                 <h1 class="text-3xl md:text-4xl font-bold text-gray-800">{{ $product->name }}</h1>
-                <p class="text-gray-500 mt-2">{{ $product->short_description ?? Str::limit($product->description, 150) }}</p>
 
                 <div class="mt-4">
                     <span class="text-2xl font-bold text-gray-900" id="product-price" data-price="{{ $product->price }}">
@@ -85,24 +84,34 @@
         </div>
     </div>
 
-    <!-- Tabs Deskripsi & Spesifikasi -->
-    <div class="max-w-6xl mx-auto mt-12">
-        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-12">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Deskripsi Produk</h2>
-            <p class="text-gray-600 leading-relaxed"></p>
+<!-- Deskripsi & Spesifikasi -->
+<div class="max-w-6xl mx-auto mt-12">
+    <div class="bg-white rounded-2xl shadow-lg p-6 md:p-12">
 
-            @if($product->specifications)
-            <div class="mt-8">
-                <h2 class="text-2xl font-bold mb-4 text-gray-800">Spesifikasi</h2>
-                <ul class="list-disc pl-5 text-gray-600">
-                    @foreach($product->specifications as $spec)
-                    <li>{{ $spec }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">
+            Deskripsi Produk
+        </h2>
+
+        <div class="text-gray-600 leading-7 whitespace-pre-line">
+            {{ trim($product->description) }}
         </div>
+
+        @if(!empty($product->specifications))
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">
+                Spesifikasi
+            </h2>
+
+            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                @foreach($product->specifications as $spec)
+                    <li>{{ $spec }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
     </div>
+</div>
 
     <!-- Review Dummy -->
     <div class="max-w-6xl mx-auto mt-12">

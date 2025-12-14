@@ -282,7 +282,7 @@
     const currentPath = window.location.pathname;
     document.querySelectorAll(".nav-link").forEach(link => {
       if (link.getAttribute("href") === currentPath) {
-        link.classList.add("text-blue-400", "border-blue-400");
+        link.classList.add("text-blue-900", "border-blue-900");
       }
     });
 
