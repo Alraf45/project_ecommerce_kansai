@@ -53,7 +53,6 @@
                                 <td class="px-5 py-3 text-gray-600">{{ $i + $products->firstItem() }}</td>
                                 <td class="px-5 py-3 font-semibold text-gray-800">{{ $product->name }}</td>
                                 <td class="px-5 py-3 text-gray-600">{{ $product->category->name ?? '-' }}</td>
-                                <td class="px-5 py-3 text-gray-600">{{ $product->color->name ?? '-' }}</td>
                                 <td class="px-5 py-3 font-medium text-gray-800">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                                 <td class="px-5 py-3 text-gray-600">{{ $product->stock }}</td>
                                 <td class="px-5 py-3 text-center">

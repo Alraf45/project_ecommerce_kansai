@@ -5,22 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Color;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['category', 'color'])->latest()->paginate(11);
+        $products = Product::with(['category'])->latest()->paginate(11);
         return view('admin.products.index', compact('products'));
     }
 
     public function create()
     {
         $categories = Category::all();
-        $colors = Color::all();
-        return view('admin.products.create', compact('categories', 'colors'));
+        return view('admin.products.create', compact('categories',));
     }
 
     public function store(Request $request)
@@ -28,7 +26,6 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name'        => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
-            'color_id'    => 'required|exists:colors,id',
             'price'       => 'required|numeric|min:0',
             'stock'       => 'required|integer|min:0',
             'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -53,8 +50,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = Category::all();
-        $colors = Color::all();
-        return view('admin.products.edit', compact('product', 'categories', 'colors'));
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -62,7 +58,6 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name'        => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
-            'color_id'    => 'required|exists:colors,id',
             'price'       => 'required|numeric|min:0',
             'stock'       => 'required|integer|min:0',
             'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

@@ -24,7 +24,7 @@ use App\Models\Product;
 
 // ========================== HOMEPAGE ==========================
 Route::get('/', function () {
-    $products = Product::with(['category', 'color'])->latest()->take(11)->get();
+    $products = Product::with(['category'])->latest()->take(11)->get();
     return view('layouts.app', compact('products'));
 })->name('dashboard');
 

@@ -20,7 +20,6 @@ class CatFactory extends Factory
             //
             'Nama Produk' => $this->faker->unique()->word(),
             'Kategori' => $this->faker->word(),
-            'Warna' => $this->faker->colorName(),
             'Stok' => $this->faker->numberBetween(0, 100),
             'Harga' => $this->faker->randomFloat(2, 1000, 1000000),
             'Gambar' => $this->faker->imageUrl(640, 480),                                                

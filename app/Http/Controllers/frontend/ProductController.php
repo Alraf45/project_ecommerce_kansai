@@ -11,7 +11,7 @@ class ProductController extends Controller
     // 🏠 Semua produk
     public function index()
     {
-        $products = Product::with(['category','color'])->get();
+        $products = Product::with(['category',])->get();
         $categories = Category::all();
         return view('layouts.products.index', compact('products', 'categories'));
     }
@@ -25,7 +25,7 @@ class ProductController extends Controller
     // ⭐ Produk Premium
     public function premium()
     {
-        $products = Product::with(['category','color'])->where('category_id', Category::where('name','Premium')->first()->id)->get();
+        $products = Product::with(['category',])->where('category_id', Category::where('name','Premium')->first()->id)->get();
         $categories = Category::all();
         return view('layouts.products.category.premium', compact('products', 'categories'));
     }
@@ -33,7 +33,7 @@ class ProductController extends Controller
     // 🏠 Produk Interior
     public function interior()
     {
-        $products = Product::with(['category','color'])->where('category_id', Category::where('name','Interior')->first()->id)->get();
+        $products = Product::with(['category'])->where('category_id', Category::where('name','Interior')->first()->id)->get();
         $categories = Category::all();
         return view('layouts.products.category.interior', compact('products', 'categories'));
     }
@@ -41,7 +41,7 @@ class ProductController extends Controller
     // 🌳 Produk Eksterior
     public function eksterior()
     {
-        $products = Product::with(['category','color'])->where('category_id', Category::where('name','Eksterior')->first()->id)->get();
+        $products = Product::with(['category'])->where('category_id', Category::where('name','Eksterior')->first()->id)->get();
         $categories = Category::all();
         return view('layouts.products.category.eksterior', compact('products', 'categories'));
     }
@@ -49,7 +49,7 @@ class ProductController extends Controller
     // 🪵 Produk Kayu & Besi
     public function kayubesi()
     {
-        $products = Product::with(['category','color'])->where('category_id', Category::where('name','Kayu & Besi')->first()->id)->get();
+        $products = Product::with(['category'])->where('category_id', Category::where('name','Kayu & Besi')->first()->id)->get();
         $categories = Category::all();
         return view('layouts.products.category.kayubesi', compact('products', 'categories'));
     }

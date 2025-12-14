@@ -3,123 +3,95 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('products')->insert([
+        // Ambil semua id warna dari tabel colors
+       
+
+        $products = [
             [
-                'name' => 'KANSAI PEARLSHEEN', // id 1
+                'name' => 'KANSAI PEARLSHEEN',
                 'price' => 295000,
                 'stock' => 500,
-                'category_id' => 3, // sesuaikan dengan id di tabel categories
-                'color_id' => 7,    // sesuaikan dengan id di tabel colors
+                'category_id' => 3,
                 'image' => 'img/products/pearlsheen.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
-                'name' => 'KANSAI DIAMOND SHIELD', // id 2
+                'name' => 'KANSAI DIAMOND SHIELD',
                 'price' => 402000,
                 'stock' => 500,
                 'category_id' => 3,
-                'color_id' => 2,
                 'image' => 'img/products/diamondshield.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
-                'name' => 'KANSAI SPLESH GLIMMER', //id 3
+                'name' => 'KANSAI SPLESH GLIMMER',
                 'price' => 350000,
                 'stock' => 500,
                 'category_id' => 3,
-                'color_id' => 3,
                 'image' => 'img/products/spleshglimmer.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
-                'name' => 'KANSAI ANTIMOSQUITO', // id 4
+                'name' => 'KANSAI ANTIMOSQUITO',
                 'price' => 220000,
                 'stock' => 500,
                 'category_id' => 1,
-                'color_id' => 6,
                 'image' => 'img/products/antimosquito.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
-                'name' => 'KANSAI TROPIC', // id 5
+                'name' => 'KANSAI TROPIC',
                 'price' => 125000,
                 'stock' => 500,
                 'category_id' => 1,
-                'color_id' => 4,
                 'image' => 'img/products/tropic.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
-                'name' => 'KANSAI PROPERTY INTERIOR', // id 6
+                'name' => 'KANSAI PROPERTY INTERIOR',
                 'price' => 145000,
                 'stock' => 500,
                 'category_id' => 1,
-                'color_id' => 5,
                 'image' => 'img/products/propertyint.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
-                'name' => 'KANSAI PROPERTY EKSTERIOR', // id 7
+                'name' => 'KANSAI PROPERTY EKSTERIOR',
                 'price' => 225000,
                 'stock' => 500,
                 'category_id' => 2,
-                'color_id' => 3,
                 'image' => 'img/products/propertyeks.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
-                'name' => 'KANSAI SPLESH', // id 8
+                'name' => 'KANSAI SPLESH',
                 'price' => 280000,
                 'stock' => 500,
                 'category_id' => 2,
-                'color_id' => 2,
                 'image' => 'img/products/splesh.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
-                'name' => 'KANSAI RAIN BLOCK', // id 9
+                'name' => 'KANSAI RAIN BLOCK',
                 'price' => 240000,
                 'stock' => 500,
                 'category_id' => 2,
-                'color_id' => 6,
                 'image' => 'img/products/rainblock.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
-                'name' => 'KANSAI FTALIT', // id 10
+                'name' => 'KANSAI FTALIT',
                 'price' => 95000,
                 'stock' => 500,
                 'category_id' => 4,
-                'color_id' => 1,
                 'image' => 'img/products/ftalit.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
-            [ 
-                'name' => 'KANSAI FTALIT DUO', // id 11
+            [
+                'name' => 'KANSAI FTALIT DUO',
                 'price' => 110000,
                 'stock' => 500,
                 'category_id' => 4,
-                'color_id' => 1,
                 'image' => 'img/products/ftalitduo.png',
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
-        ]);
+        ];
+
+        
     }
 }

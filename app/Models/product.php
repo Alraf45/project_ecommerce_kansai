@@ -11,7 +11,6 @@ class Product extends Model
 protected $fillable = [
     'name',
     'category_id',
-    'color_id',
     'price',
     'stock',    
     'image',
@@ -25,10 +24,7 @@ protected $fillable = [
     }
 
     // Relasi ke warna
-    public function color()
-    {
-        return $this->belongsTo(Color::class);
-    }
+
 
     // Relasi ke cart items
     public function cartItems()

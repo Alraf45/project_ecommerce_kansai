@@ -47,9 +47,6 @@
 
                 <div class="mt-2 text-gray-600">
                     <p>Kategori: <span class="font-medium">{{ $product->category->name ?? '-' }}</span></p>
-                    @if($product->color)
-                    <p>Warna: <span class="font-medium">{{ $product->color->name }}</span></p>
-                    @endif
                     @if(isset($product->stock))
                     <p>Stok: <span class="font-medium">{{ $product->stock }}</span></p>
                     @endif

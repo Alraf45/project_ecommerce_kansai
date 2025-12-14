@@ -14,8 +14,7 @@ return new class extends Migration
             $table->string('image')->nullable();                  // Gambar produk (path lokal)
             $table->decimal('price', 12, 2);                      // Harga
             $table->integer('stock')->default(0);                 // Stok
-            $table->unsignedBigInteger('category_id');            // Relasi ke categories
-            $table->unsignedBigInteger('color_id');               // Relasi ke colors
+            $table->unsignedBigInteger('category_id');            // Relasi ke categories           rs
             $table->timestamps();
 
             // Foreign key
@@ -23,9 +22,7 @@ return new class extends Migration
                 ->references('id')->on('categories')
                 ->onDelete('cascade');
 
-            $table->foreign('color_id')
-                ->references('id')->on('colors')
-                ->onDelete('cascade');
+        
         });
     }
 
